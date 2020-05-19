@@ -52,7 +52,7 @@ jobs:
           command: |
             if [[ true ]];  then
               curl -X POST -H "X-ChatWorkToken: $CHATWORK_API_KEY" -d \
-                "body= $MEMBERS [info][title]Repository : $CIRCLE_PROJECT_REPONAME (ok2)[/title]Your pull request is successful (beer)(beer)(beer
+                "body= $MEMBERS [info][title]Repository : $CIRCLE_PROJECT_REPONAME (ok2)[/title]Your pull request is successful (beer)(beer)(beer)
               -> Click here for more detail: $CIRCLE_BUILD_URL
               - Branch: $CIRCLE_BRANCH
               - Pull request: $CIRCLE_PULL_REQUEST[/info]
