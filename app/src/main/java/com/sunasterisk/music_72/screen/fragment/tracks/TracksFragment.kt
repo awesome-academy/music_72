@@ -32,6 +32,7 @@ class TracksFragment : Fragment(), View.OnClickListener,
     private lateinit var binding: FragmentTracksBinding
     private val adapter: TrackAdapter by lazy { TrackAdapter() }
     private var genreName: String? = null
+    private var tracks = mutableListOf<Track>()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -74,6 +75,7 @@ class TracksFragment : Fragment(), View.OnClickListener,
 
     private fun bindDataToView() {
         binding.viewModel?.tracks?.observe(this, Observer {
+            tracks.addAll(it)
             textTotalTrack.text = it.size.toString()
             textDescriptionTotalTrack.text =
                 binding.viewModel?.getDescriptionTotalTrack(it.size)
@@ -112,7 +114,7 @@ class TracksFragment : Fragment(), View.OnClickListener,
         (activity as AppCompatActivity).apply {
             replaceFragmentToActivity(
                 supportFragmentManager,
-                PlayTrackFragment.newInstance(data.id),
+                PlayTrackFragment.newInstance(data, tracks),
                 R.id.container
             )
         }
@@ -120,6 +122,7 @@ class TracksFragment : Fragment(), View.OnClickListener,
 
     override fun onItemDownloadClick(data: Track) {
         activity?.startService(DownloadTrackService.getIntent(context, data))
+        PlayTrackFragment.newInstance(data, tracks)
     }
 
     companion object {

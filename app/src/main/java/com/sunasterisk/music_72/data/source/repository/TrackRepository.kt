@@ -8,6 +8,7 @@ import io.reactivex.Observable
 interface TrackRepository{
     fun getAllTrack(): Observable<MutableList<Track>>
     fun getTracksByGenre(genre: String, limit: Int): Observable<MutableList<Track>>
+    fun getTrackById(id: Int): Observable<Track>
 }
 
 class TrackRepositoryImplementor(
@@ -19,4 +20,6 @@ class TrackRepositoryImplementor(
 
     override fun getTracksByGenre(genre: String, limit: Int) =
         remote.getTracksByGenre(genre, limit)
+
+    override fun getTrackById(id: Int) = remote.getTrackById(id)
 }
