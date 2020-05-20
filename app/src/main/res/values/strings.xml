@@ -1,3 +1,8 @@
 <resources>
     <string name="app_name">Music_72</string>
+    <string name="title_genres">GENRES</string>
+    <string name="title_genre_name">Genre Name</string>
+    <string name="title_tracks_total">Tracks Total</string>
+    <string name="title_home">Home</string>
+    <string name="title_library">Library</string>
 </resources>

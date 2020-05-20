@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:id="@+id/navigationBottomHome"
+        android:title="@string/title_home"
+        android:icon="@drawable/ic_home_white_24dp"/>
+
+    <item
+        android:id="@+id/navigationBottomLibrary"
+        android:title="@string/title_library"
+        android:icon="@drawable/ic_library_music_white_24dp"/>
+</menu>
