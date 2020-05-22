@@ -5,7 +5,7 @@ import android.os.Bundle
 import android.view.MenuItem
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.sunasterisk.music_72.R
-import com.sunasterisk.music_72.screen.fragment.HomeFragment
+import com.sunasterisk.music_72.screen.fragment.home.HomeFragment
 import kotlinx.android.synthetic.main.activity_main.*
 
 class MainActivity : AppCompatActivity(), BottomNavigationView.OnNavigationItemSelectedListener {
