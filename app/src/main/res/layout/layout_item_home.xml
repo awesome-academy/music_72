@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <data>
+        <variable
+            name="viewModel"
+            type="com.sunasterisk.music_72.screen.viewmodel.ItemGenreViewModel" />
+    </data>
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:onClick="@{() -> viewModel.onClickListener()}"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/containerItem">
+
+        <ImageView
+            android:id="@+id/imageGenre"
+            android:layout_width="0dp"
+            android:layout_height="@dimen/dp_250"
+            android:alpha=".45"
+            android:scaleType="fitXY"
+            imageResource="@{viewModel.genre.res}"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/textGenreTitle"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:text="@{viewModel.genre.title}"
+            android:textColor="@android:color/white"
+            android:textSize="@dimen/sp_40"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>
