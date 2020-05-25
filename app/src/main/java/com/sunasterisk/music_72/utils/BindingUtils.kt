@@ -3,8 +3,8 @@ package com.sunasterisk.music_72.utils
 import android.widget.ImageView
 import androidx.databinding.BindingAdapter
 import com.bumptech.glide.Glide
-import com.sunasterisk.music_72.R
 import com.bumptech.glide.request.RequestOptions
+import com.sunasterisk.music_72.R
 
 object BindingUtils {
     @JvmStatic
