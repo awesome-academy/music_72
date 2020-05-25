@@ -30,6 +30,7 @@
                     android:scaleType="fitXY"
                     android:src="@drawable/bg_country"
                     app:layout_collapseMode="parallax" />
+
                 <androidx.constraintlayout.widget.ConstraintLayout
                     app:layout_collapseMode="parallax"
                     android:padding="@dimen/dp_20"
@@ -91,6 +92,7 @@
                         android:layout_height="wrap_content" />
 
                     <TextView
+                        android:id="@+id/textTitleToolBar"
                         android:textColor="@android:color/white"
                         android:textSize="@dimen/sp_25"
                         android:text="@string/title_genre_name"

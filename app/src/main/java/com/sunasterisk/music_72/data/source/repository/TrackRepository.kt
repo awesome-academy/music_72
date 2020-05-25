@@ -6,8 +6,8 @@ import com.sunasterisk.music_72.data.source.remote.TrackRemoteDataSource
 import io.reactivex.Observable
 
 interface TrackRepository{
-    fun getAllTrack(): Observable<MutableList<Track>>?
-    fun getTracksByGenre(genre: String, limit: Int): Observable<MutableList<Track>>?
+    fun getAllTrack(): Observable<MutableList<Track>>
+    fun getTracksByGenre(genre: String, limit: Int): Observable<MutableList<Track>>
 }
 
 class TrackRepositoryImplementor(
