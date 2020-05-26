@@ -26,7 +26,10 @@ fun AppCompatActivity.replaceFragmentToActivity(
     idRes: Int
 ) {
    fragmentManager.beginTransaction()
-        .setCustomAnimations(android.R.animator.fade_in, android.R.animator.fade_out)
+        .setCustomAnimations(
+            android.R.animator.fade_in, android.R.animator.fade_out,
+            android.R.animator.fade_in, android.R.animator.fade_out
+        )
         .replace(idRes, fragment)
         .addToBackStack(fragment::class.java.simpleName)
         .commit()

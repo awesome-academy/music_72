@@ -22,6 +22,7 @@ import com.sunasterisk.music_72.databinding.FragmentTracksBinding
 import com.sunasterisk.music_72.screen.adapter.TrackAdapter
 import com.sunasterisk.music_72.screen.factory.ViewModelFactory
 import com.sunasterisk.music_72.screen.fragment.playtrack.PlayTrackFragment
+import com.sunasterisk.music_72.screen.service.DownloadTrackService
 import com.sunasterisk.music_72.utils.*
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.fragment_tracks.*
@@ -117,7 +118,9 @@ class TracksFragment : Fragment(), View.OnClickListener,
         }
     }
 
-    override fun onItemDownloadClick(data: Track) {}
+    override fun onItemDownloadClick(data: Track) {
+        activity?.startService(DownloadTrackService.getIntent(context, data))
+    }
 
     companion object {
         private const val ARGUMENT_GENRE_KEY = "ARGUMENT_GENRE_KEY"
