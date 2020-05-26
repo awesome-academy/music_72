@@ -18,7 +18,7 @@ import com.sunasterisk.music_72.screen.factory.ViewModelFactory
 import com.sunasterisk.music_72.utils.setupToolbar
 import kotlinx.android.synthetic.main.fragment_play_track.*
 
-class PlayTrackFragment : Fragment(){
+class PlayTrackFragment : Fragment(), View.OnClickListener {
     private lateinit var binding: FragmentPlayTrackBinding
     private var trackId = 0
     private var track: Track? = null
@@ -44,6 +44,7 @@ class PlayTrackFragment : Fragment(){
             setupToolbar(toolBarPlayTrack)
         }
         setHasOptionsMenu(true)
+        buttonBack.setOnClickListener(this)
     }
 
     private fun initData() {
@@ -79,5 +80,11 @@ class PlayTrackFragment : Fragment(){
             PlayTrackFragment().apply {
                 arguments = bundleOf(ARGUMENT_PLAY_TRACK_KEY to trackId)
             }
+    }
+
+    override fun onClick(v: View?) {
+        (activity as AppCompatActivity).supportFragmentManager.apply {
+            popBackStack()
+        }
     }
 }
