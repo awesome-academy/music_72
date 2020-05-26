@@ -62,6 +62,7 @@ class TracksFragment : Fragment(), View.OnClickListener,
     private fun initData() {
         genreName = arguments?.getString(ARGUMENT_GENRE_KEY, GenreName.ALL_TRACK)
         genreName?.let { it ->
+            textTitleToolBar.text = genreName
             MusicUtils.getGenreImage(it)?.let {
                 imageGenre.setImageResource(it)
             }
