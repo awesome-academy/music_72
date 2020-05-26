@@ -20,7 +20,7 @@ import com.sunasterisk.music_72.screen.adapter.GenreAdapter
 import com.sunasterisk.music_72.screen.factory.ViewModelFactory
 import com.sunasterisk.music_72.screen.fragment.tracks.TracksFragment
 import com.sunasterisk.music_72.utils.OnRecyclerViewItemListener
-import com.sunasterisk.music_72.utils.addFragmentToActivity
+import com.sunasterisk.music_72.utils.replaceFragmentToActivity
 import com.sunasterisk.music_72.utils.setupToolbar
 import kotlinx.android.synthetic.main.fragment_home.*
 
@@ -60,9 +60,9 @@ class HomeFragment : Fragment(), OnRecyclerViewItemListener<Genre> {
 
     override fun onItemClick(data: Genre) {
         (activity as AppCompatActivity).apply {
-            addFragmentToActivity(
+            replaceFragmentToActivity(
                 supportFragmentManager,
-                TracksFragment.getInstance(data.title),
+                TracksFragment.newInstance(data.title),
                 R.id.container
             )
         }

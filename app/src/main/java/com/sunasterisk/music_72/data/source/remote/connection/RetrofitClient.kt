@@ -14,12 +14,8 @@ class RetrofitClient {
         val INSTANCE = RetrofitClient()
     }
 
-    fun getTrackService(): TrackService? {
-        if (trackService == null) {
-            trackService = provideRetrofit().create(TrackService::class.java)
-        }
-        return trackService
-    }
+    fun getTrackService(): TrackService =
+        trackService ?: provideRetrofit().create(TrackService::class.java).also { trackService = it }
 
     private fun provideRetrofit(): Retrofit {
         val logging = HttpLoggingInterceptor()
