@@ -10,5 +10,6 @@ interface TrackDataSource {
     interface Remote {
         fun getAllTrack(): Observable<MutableList<Track>>
         fun getTracksByGenre(genre: String, limit: Int): Observable<MutableList<Track>>
+        fun getTrackById(id: Int): Observable<Track>
     }
 }
