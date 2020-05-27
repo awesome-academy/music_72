@@ -1,20 +1,23 @@
 package com.sunasterisk.music_72.utils.media
 
-import android.content.Context
-import android.media.MediaPlayer
+import android.media.AudioManager
 import android.net.Uri
+import com.sunasterisk.music_72.data.anotation.State
 import com.sunasterisk.music_72.data.model.Track
+import com.sunasterisk.music_72.screen.service.PlayTrackService
+import com.sunasterisk.music_72.utils.ChangeTrackListener
 import com.sunasterisk.music_72.utils.Constants
 
-class MediaManager(private val context: Context) : MediaSetting() {
+class MediaManager(private val service: PlayTrackService) : MediaSetting() {
     private var currentTrack: Track? = null
     private var tracks = mutableListOf<Track>()
+    private var changeTrackListener: ChangeTrackListener? = null
 
     override fun create() {
         mediaPlayer.reset()
         try {
             mediaPlayer.setDataSource(
-                context,
+                service,
                 Uri.parse(
                     currentTrack?.streamUrl
                             + QUESTION_MASK + Constants.CLIENT_ID
@@ -24,11 +27,17 @@ class MediaManager(private val context: Context) : MediaSetting() {
         } catch (e: Exception) {
             e.printStackTrace()
         }
+        mediaPlayer.setAudioStreamType(AudioManager.STREAM_MUSIC)
+        mediaPlayer.setOnCompletionListener(service)
+        mediaPlayer.setOnPreparedListener(service)
         mediaPlayer.prepare()
     }
 
     override fun start() {
+        trackState = State.PLAY
+        changeTrackListener?.onChangeState(trackState)
         mediaPlayer.start()
+        changeTrackListener?.onChangeTrackComplete()
     }
 
     override fun change(track: Track) {
@@ -37,6 +46,8 @@ class MediaManager(private val context: Context) : MediaSetting() {
     }
 
     override fun pause() {
+        trackState = State.PAUSE
+        changeTrackListener?.onChangeState(trackState)
         mediaPlayer.pause()
     }
 
@@ -66,15 +77,19 @@ class MediaManager(private val context: Context) : MediaSetting() {
         }
     }
 
+    fun setChangeTrackListener(changeTrackListener: ChangeTrackListener) {
+        this.changeTrackListener = changeTrackListener
+    }
+
     fun setTracks(tracks: MutableList<Track>) {
         this.tracks = tracks
     }
 
+    fun getCurrentTrack() = this.currentTrack
+
     fun setCurrentTrack(track: Track) {
         currentTrack = track
     }
-
-    fun getCurrentPosition() = mediaPlayer.currentPosition
 
     override fun stop() {
         mediaPlayer.stop()
@@ -89,9 +104,9 @@ class MediaManager(private val context: Context) : MediaSetting() {
         private var INSTANCE: MediaManager? = null
 
         @JvmStatic
-        fun getInstance(context: Context): MediaManager =
+        fun getInstance(service: PlayTrackService): MediaManager =
             (INSTANCE ?: synchronized(this) {
-                INSTANCE ?: MediaManager(context).also { INSTANCE = it }
+                INSTANCE ?: MediaManager(service).also { INSTANCE = it }
             })
     }
 }

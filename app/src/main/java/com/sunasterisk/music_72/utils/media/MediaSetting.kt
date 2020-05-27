@@ -7,7 +7,7 @@ import com.sunasterisk.music_72.data.anotation.State
 abstract class MediaSetting {
     var mediaPlayer = MediaPlayer()
     @State
-    private var trackState =  State.PAUSE
+    var trackState =  State.PAUSE
 
     abstract fun create()
     abstract fun start()
@@ -26,17 +26,13 @@ abstract class MediaSetting {
     }
 
     open fun seek(milliseconds: Int) {
-        mediaPlayer.seekTo(milliseconds)
+        mediaPlayer.seekTo(milliseconds * THOUSAND)
     }
 
     open fun getDuration() = mediaPlayer.duration
 
     open fun getCurrentDuration() = mediaPlayer.currentPosition
-
-    open fun setState(@State state: Int) {
-        this.trackState = state
+    companion object {
+        const val THOUSAND = 1000
     }
-
-    @State
-    open fun getState() = trackState
 }

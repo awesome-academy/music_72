@@ -11,10 +11,6 @@ fun AppCompatActivity.addFragmentToActivity(
     idRes: Int
 ) {
     fragmentManager.beginTransaction()
-        .setCustomAnimations(
-            android.R.animator.fade_in, android.R.animator.fade_out,
-            android.R.animator.fade_in, android.R.animator.fade_out
-        )
         .add(idRes, fragment, fragment::class.java.simpleName)
         .addToBackStack(fragment::class.java.simpleName)
         .commit()
