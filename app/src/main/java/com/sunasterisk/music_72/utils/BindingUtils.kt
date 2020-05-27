@@ -25,7 +25,7 @@ object BindingUtils {
         Glide.with(view)
             .asBitmap()
             .load(url)
-            .apply(RequestOptions.errorOf(R.drawable.bg_all_music))
+            .apply(RequestOptions.errorOf(R.drawable.logo_app))
             .into(object : BitmapImageViewTarget(view) {
                 override fun setResource(resource: Bitmap?) {
                     val circularBitmapDrawable =

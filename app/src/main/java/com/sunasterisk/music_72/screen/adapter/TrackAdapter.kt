@@ -2,6 +2,7 @@ package com.sunasterisk.music_72.screen.adapter
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import android.view.animation.AnimationUtils
 import androidx.databinding.DataBindingUtil
 import androidx.recyclerview.widget.AsyncDifferConfig
 import androidx.recyclerview.widget.DiffUtil
@@ -13,6 +14,7 @@ import com.sunasterisk.music_72.databinding.LayoutItemTrackBinding
 import com.sunasterisk.music_72.screen.viewmodel.ItemTrackViewModel
 import com.sunasterisk.music_72.utils.OnDownloadItemListener
 import com.sunasterisk.music_72.utils.OnRecyclerViewItemListener
+import kotlinx.android.synthetic.main.layout_item_track.view.*
 import java.util.concurrent.Executors
 
 class TrackAdapter() : ListAdapter<Track, TrackAdapter.ViewHolder>(
@@ -25,7 +27,7 @@ class TrackAdapter() : ListAdapter<Track, TrackAdapter.ViewHolder>(
 
     fun setOnItemClickListener(
         listener: OnRecyclerViewItemListener<Track>?,
-        downloadListener: OnDownloadItemListener
+        downloadListener: OnDownloadItemListener?
     ) {
         this.listener = listener
         this.downloadListener = downloadListener
@@ -39,6 +41,12 @@ class TrackAdapter() : ListAdapter<Track, TrackAdapter.ViewHolder>(
     }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
+        val animationId = if ((position % 2) == 0) {
+            R.anim.anim_fade_in
+        } else {
+            R.anim.anim_fade_out
+        }
+        holder.loadAnimation(animationId)
         holder.bindData(getItem(position))
     }
 
@@ -55,6 +63,12 @@ class TrackAdapter() : ListAdapter<Track, TrackAdapter.ViewHolder>(
                 binding.viewModel = ItemTrackViewModel(data, listener, null)
             }
             binding.executePendingBindings()
+        }
+
+        fun loadAnimation(animationId: Int) {
+            binding.root.apply {
+                containerItemTrack.animation = AnimationUtils.loadAnimation(context, animationId)
+            }
         }
     }
 

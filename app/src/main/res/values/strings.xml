@@ -8,4 +8,6 @@
     <string name="title_tracks">Tracks</string>
     <string name="title_lyric_series">Lyric Series</string>
     <string name="title_download">Download</string>
+    <string name="title_audio">Audio</string>
+    <string name="value_default_time">00:00</string>
 </resources>

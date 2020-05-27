@@ -8,7 +8,7 @@ import retrofit2.http.Query
 
 interface TrackService {
     @GET("/tracks?")
-    fun getAllTrack(): Observable<MutableList<Track>>
+    fun getAllTrack(@Query("limit") limit: Int): Observable<MutableList<Track>>
 
     @GET("/tracks?")
     fun getTrackByGenre(

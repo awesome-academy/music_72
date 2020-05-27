@@ -38,7 +38,7 @@ class TracksViewModel(private val repository: TrackRepositoryImplementor) : View
     }
 
     private fun getAllTrack() {
-        val disposable = repository.getAllTrack()
+        val disposable = repository.getAllTrack(LIMIT_ITEM)
             .subscribeOn(Schedulers.io())
             .observeOn(AndroidSchedulers.mainThread())
             .subscribe({
