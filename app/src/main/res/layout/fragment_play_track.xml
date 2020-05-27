@@ -168,11 +168,12 @@
 
         <TextView
             android:id="@+id/textCurrentDuration"
-            android:layout_width="0dp"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:gravity="center"
             android:textColor="@android:color/white"
             android:textSize="@dimen/sp_20"
+            android:text="@string/value_default_time"
             android:padding="5dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -181,11 +182,12 @@
 
         <TextView
             android:id="@+id/textDuration"
-            android:layout_width="0dp"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:gravity="center"
             android:textColor="@android:color/white"
             android:textSize="@dimen/sp_20"
+            android:text="@string/value_default_time"
             android:padding="5dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"

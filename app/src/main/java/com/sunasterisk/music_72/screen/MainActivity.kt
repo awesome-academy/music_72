@@ -5,8 +5,10 @@ import android.view.MenuItem
 import androidx.appcompat.app.AppCompatActivity
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.sunasterisk.music_72.R
+import com.sunasterisk.music_72.screen.fragment.audio.AudioFragment
 import com.sunasterisk.music_72.screen.fragment.home.HomeFragment
 import com.sunasterisk.music_72.utils.addFragmentToActivity
+import com.sunasterisk.music_72.utils.replaceFragmentToActivity
 import kotlinx.android.synthetic.main.activity_main.*
 
 class MainActivity : AppCompatActivity(), BottomNavigationView.OnNavigationItemSelectedListener {
@@ -24,8 +26,20 @@ class MainActivity : AppCompatActivity(), BottomNavigationView.OnNavigationItemS
 
     override fun onNavigationItemSelected(item: MenuItem): Boolean {
         when(item.itemId) {
-            R.id.navigationBottomHome -> return true
-            R.id.navigationBottomLibrary -> return true
+            R.id.navigationBottomHome -> {
+                replaceFragmentToActivity(
+                    supportFragmentManager,
+                    HomeFragment.newInstance(),
+                    R.id.container
+                )
+            }
+            R.id.navigationBottomLibrary -> {
+                replaceFragmentToActivity(
+                    supportFragmentManager,
+                    AudioFragment.newInstance(),
+                    R.id.container
+                )
+            }
         }
         return false
     }

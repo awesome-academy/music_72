@@ -114,7 +114,7 @@ class TracksFragment : Fragment(), View.OnClickListener,
         (activity as AppCompatActivity).apply {
             replaceFragmentToActivity(
                 supportFragmentManager,
-                PlayTrackFragment.newInstance(data, tracks),
+                PlayTrackFragment.newInstance(data, tracks, TracksFragment::class.java.simpleName),
                 R.id.container
             )
         }
@@ -122,7 +122,7 @@ class TracksFragment : Fragment(), View.OnClickListener,
 
     override fun onItemDownloadClick(data: Track) {
         activity?.startService(DownloadTrackService.getIntent(context, data))
-        PlayTrackFragment.newInstance(data, tracks)
+        PlayTrackFragment.newInstance(data, tracks, PlayTrackFragment::class.java.simpleName)
     }
 
     companion object {
